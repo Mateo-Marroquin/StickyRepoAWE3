@@ -1,0 +1,30 @@
+<div class="mt-30 flex flex-col items-center justify-center gap-4">
+
+
+
+  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <fieldset  class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+      <legend class="fieldset-legend">Nueva nota</legend>
+
+      <label class="label">Título</label>
+      <input formControlName="title" type="text" class="input" placeholder="Mi nota...." />
+      @if (noteForm.get('title')?.hasError('required') && noteForm.get('title')?.touched){
+        <span class="error-text text-red-500">El título es obligatorio.</span>
+      }
+
+      <label class="label">Contenido</label>
+      <textarea formControlName="body" class="textarea" placeholder="Mi nota habla sobre...."></textarea>
+      @if (noteForm.get('body')?.hasError('required') && noteForm.get('body')?.touched){
+        <span class="error-text text-red-500">El contenido es obligatorio.</span>
+      }
+
+      <button type="submit" [disabled]="noteForm.invalid" class="btn btn-neutral mt-4">Guardar</button>
+    </fieldset>
+  </form>
+
+  @if (noteCreated()) {
+    <div role="alert" class="alert alert-success w-xs">
+      <span>Nota creada correctamente.</span>
+    </div>
+  }
+</div>

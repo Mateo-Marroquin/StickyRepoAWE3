@@ -1,0 +1,9 @@
+<div class="flex flex-wrap justify-center items-start gap-4 p-4">
+  @if (notes().length == 0){
+    <h1 class="text-lg font-semibold">No existen notas en la DB</h1>
+  } @else {
+    @for (note of notes(); track $index) {
+      <app-note-card [note]="note"></app-note-card>
+    }
+  }
+</div>
